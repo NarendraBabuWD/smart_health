@@ -33,7 +33,7 @@
                         <!-- <span class="dasbaord-name text-white text-uppercase m-b-20"> My Health Report </span> -->
                     </div>
                     <div class="card-body-icon">
-                        <img src="assets/images/icon6.png" class="float-right" />
+                        <img src="./assets/icons/smart_care_home_icons/Doctor_Icons/doctor_health_dashbard.png" class="float-right" />
                     </div>
                 </div>
 
@@ -43,12 +43,19 @@
             <div class="card text-white bg-green o-hidden h-100">
                 <div class="card-body align-items-center d-flex justify-content-center">
                     <div class="mr-6" *ngIf="auth.isDoctor()">
+                        <!-- <div class="card-body-icon">
+                            <img src="./assets/icons/smart_care_home_icons/Doctor_Icons/medical_summary.png" class="float-right" />
+                        </div> -->
                         <a (click)="medicalSummaryInputFormModel()" role="button"
                             class="btn dasbaord-name text-white text-uppercase m-b-20" data-toggle="modal">
                             MEDICAL SUMMARY DASHBOARD</a>
                     </div>
                     <div class="mr-6" *ngIf="!auth.isDoctor()">
                         <!-- <span class="dasbaord-name text-white text-uppercase m-b-20"> My Medical Summary </span> -->
+                        
+                        <!-- <div class="card-body-icon">
+                            <img src="./assets/icons/smart_care_home_icons/Doctor_Icons/medical_summary.png" class="float-right" />
+                        </div> -->
                         <a routerLink="/subscriber/medical-summary" href="javascript:void(0);"
                             class="btn dasbaord-name text-white text-uppercase m-b-20">
                             My Medical Summary
@@ -56,7 +63,7 @@
                     </div>
 
                     <div class="card-body-icon">
-                        <img src="assets/images/2-02.png" class="float-right" />
+                        <img src="./assets/icons/smart_care_home_icons/Doctor_Icons/medical_summary.png" class="float-right" />
                     </div>
                 </div>
             </div>
@@ -69,7 +76,7 @@
                             Data </a>
                     </div>
                     <div class="card-body-icon">
-                        <img src="assets/images/icon1.png" class="float-right" />
+                        <img src="./assets/icons/smart_care_home_icons/Subscriber_icons/health_data.png" class="float-right" />
                     </div>
                 </div>
             </div>
@@ -81,7 +88,7 @@
                             <a routerLink="/doctor/profile" class="dasbaord-name text-white text-uppercase m-b-20"> My Account </a>
                         </div>
                         <div class="card-body-icon">
-                            <img src="assets/images/icon7.png" class="float-right" />
+                            <img src="./assets/icons/smart_care_home_icons/Doctor_Icons/doctor_account.png" class="float-right" />
                         </div>
                     </div>
                 </div>
@@ -92,16 +99,20 @@
     <div class="card-deck mt-3">
         <div class="card bg-sub-app">
             <div class="card-body">
-                <div class="float-right">
-                    <img src="assets/images/icon4a.png" />
-                </div>
+                
                 <div class="text-white text-uppercase m-b-20" *ngIf="!auth.isDoctor()">
+                    <div class="float-right">
+                        <img  src="./assets/icons/smart_care_home_icons/Doctor_Icons/appointment.png" />
+                    </div>
                     <a routerLink="/subscriber-appointment" class="text-white text-uppercase m-b-20"
                         >
                         My Appointment
                     </a>
                 </div>
                 <div class="text-white text-uppercase m-b-20" *ngIf="auth.isDoctor()">
+                    <div class="float-right">
+                        <img  src="./assets/icons/smart_care_home_icons/Doctor_Icons/appointment.png" />
+                    </div>
                     <a routerLink="/doctor-appointment" class="text-white text-uppercase m-b-20"
                         >
                         My Appointment
@@ -113,6 +124,9 @@
         </div>
         <div class="card bg-yellow" *ngIf="!auth.isDoctor()">
             <div class="card-body">
+                <div class="float-right">
+                    <img src="assets/icons/smart_care_home_icons/Subscriber_icons/subscription.png" />
+                </div>
                 <i class="fa fa-bar-chart float-right text-size1 -white icon-size"></i>
                 <!-- <p class="text-white text-uppercase m-b-20">MY SUBSCRIPTION / ACCOUNT
                 </p> -->
@@ -134,7 +148,11 @@
         </div>
         <div class="card bg-blue">
             <div class="card-body">
+                <div class="float-right">
+                    <img  src="assets/icons/smart_care_home_icons/Subscriber_icons/feedback.png" />
+                </div>
                 <p class="text-white text-uppercase m-b-20"></p>
+                
                 <!-- <h4 class="m-b-20 text-white counter">120</h4> -->
                 <!-- <div class="text-white text-uppercase m-b-20" *ngIf="!auth.isDoctor()">
                     <a routerLink="#" class="text-white text-uppercase m-b-20"
@@ -152,6 +170,7 @@
         </div>
         <div class="card" style="background-color: #972e9c;">
             <div class="card-body">
+                
                 <i class="fa fa-bar-chart float-right text-size1 -white icon-size"></i>
                 <!-- <p class="text-white text-uppercase m-b-20">HEALTH INFO BITS</p> -->
                 <div class="text-white text-uppercase m-b-20" *ngIf="!auth.isDoctor()">
@@ -159,12 +178,19 @@
                             >
                             What's New
                         </a>
+                        <div class="float-right">
+                            <img src="assets/icons/smart_care_home_icons/Subscriber_icons/promotions.png" />
+                        </div>
                     </div>
                     <div class="text-white text-uppercase m-b-20" *ngIf="auth.isDoctor()">
+                        <div class="float-right">
+                            <img  src="./assets/icons/smart_care_home_icons/Doctor_Icons/doctor_announcement.png" />
+                        </div>
                         <a routerLink="/announcements" class="text-white text-uppercase m-b-20"
                             >
                             Announcements
                         </a>
+                        
                     </div>
                 <!-- <h4 class="m-b-20 text-white counter">250</h4> -->
             </div>
@@ -173,6 +199,9 @@
 
         <div class="card" *ngIf="!auth.isDoctor()" style="background-color: #E2A07A;">
             <div class="card-body">
+                <div class="float-right">
+                    <img src="assets/icons/smart_care_home_icons/Subscriber_icons/health_info_bit.png" />
+                </div>
                 <i class="fa fa-bar-chart float-right text-size1 -white icon-size"></i>
                 <!-- <p class="text-white text-uppercase m-b-20">HEALTH INFO BITS</p> -->
                 <div class="text-white text-uppercase m-b-20">

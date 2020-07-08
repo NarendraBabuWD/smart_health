@@ -26,6 +26,9 @@ import { WhatsNewComponent } from './whats-new/whats-new.component';
 import { HealthInfoBitsComponent } from './health-info-bits/health-info-bits.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { SubscriptionAccountComponent } from './subscription-account/subscription-account.component';
+import { SubscriptionOrderComponent } from './subscription-order/subscription-order.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -67,7 +70,10 @@ const routes: Routes = [
   { path: 'whatsnew', component: WhatsNewComponent, canActivate: [AuthGuard] },
   { path: 'healthInfoBits', component: HealthInfoBitsComponent, canActivate: [AuthGuard] },
   { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard]},
-  { path: 'privacy-policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard]}
+  { path: 'privacy-policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard]},
+  { path: 'subscription-account', component: SubscriptionAccountComponent, canActivate: [AuthGuard]},
+  { path: 'subscription-order', component: SubscriptionOrderComponent, canActivate: [AuthGuard]},
+
 ];
 
 @NgModule({

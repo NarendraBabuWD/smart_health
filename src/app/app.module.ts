@@ -64,6 +64,8 @@ import { HealthInfoBitsComponent } from './health-info-bits/health-info-bits.com
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { YearlyReportComponent } from './yearly-report/yearly-report.component';
+import { SubscriptionAccountComponent } from './subscription-account/subscription-account.component';
+import { SubscriptionOrderComponent } from './subscription-order/subscription-order.component';
 
 
 /*
@@ -115,7 +117,9 @@ export const firebaseConfig = {
     NotificationsComponent,
     PrivacyPolicyComponent,
     YearlyReportComponent,
-    AbsPipe
+    AbsPipe,
+    SubscriptionAccountComponent,
+    SubscriptionOrderComponent
   ],
   imports: [
     BrowserModule,

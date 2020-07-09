@@ -11,7 +11,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class InviteSubscriberService {
-    private apiUrlUpdateUserFcmToken = Apps.apiBaseUrl +'update_user_fcm_token';
+    // private apiUrlUpdateUserFcmToken = Apps.apiBaseUrl +'update_user_fcm_token';
     private apiUrlInviteSub = Apps.apiBaseUrl +'push_fcm_notification';
     private apiUrlGetDoctorData = Apps.apiBaseUrl + 'get_doctor_details';
     private apiUrlGetEmpanelmentStatus = Apps.apiBaseUrl + 'empanelement_application_status';

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import appConstants from '../config/app.constants'
 import { AuthService } from "../auth.service";
 import { DataService } from "../services/data.service";
-// import { MessagingService } from "../messaging.service";
+import { MessagingService } from "../messaging.service";
 import { InviteSubscriberService } from "../services/inviteSuscriber.service";
 import { UtilService } from '../services/util.service';
 import { sha256 } from 'js-sha256';
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
               private data: DataService, private utilService: UtilService,
               private inviteSubscriberService: InviteSubscriberService, 
               private formBuilder: FormBuilder, 
-              // private msgService: MessagingService, 
+              private msgService: MessagingService, 
               private router: Router, public auth: AuthService,
               private toastrService: ToastrService) { 
                 
@@ -41,13 +41,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     // this.restrictDoctor();
     this.showSubModal = false;
-    this.getClaimStatus();
+    // this.getClaimStatus();
     
 
-    // this.msgService.getPermission();
-    // this.msgService.receiveMessage();
+    this.msgService.getPermission();
+    this.msgService.receiveMessage();
     // this.message = this.msgService.currentMessage;
-    // this.inviteSubscriberService.updateUserFcmToken();
+    // this.updateFcmTokn();
     this.medicalSummaryInputForm = this.formBuilder.group({
       subscriber_id: ['', [Validators.required]]
     });
@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
       console.log(sessionStorage.getItem("fcm_token"));
     },1500);*/
     
-     
+    this.msgService.updateUserFcmToken();
  
   }
   
@@ -96,6 +96,9 @@ export class HomeComponent implements OnInit {
     //  setTimeout(function(){
     //   console.log(sessionStorage.getItem("fcm_token"));
     // },1500);
+
+    console.log("FCM CALLED");
+    
     return this.httpService.commonPost(appConstants.apiBaseUrl + 'update_user_fcm_token', { 
       user_id: JSON.parse(sessionStorage.getItem("userdata")).user_id,
       fcm_token: sessionStorage.getItem("fcm_token") 
@@ -108,10 +111,7 @@ export class HomeComponent implements OnInit {
   }*/
 
   restrictSubscriber(){
-    this.addPayment();
-    /*this.addPayment().subscribe((response) => {
-      console.log(response);     
-    });*/  
+ 
 if(JSON.parse(sessionStorage.getItem("userdata")).doctor_id == ''){
   this.utilService.toastrInfo("Please Wait For Doctor's Invitation", "Subscriber");
 } else if(JSON.parse(sessionStorage.getItem("userdata")).doctor_id != ''){
@@ -132,46 +132,8 @@ if(JSON.parse(sessionStorage.getItem("userdata")).doctor_id == ''){
       user_id: JSON.parse(sessionStorage.getItem("userdata")).user_id 
      });
   }
-/*
-  addPayment() {
-    console.log("Payment Enter");
-    let MerchantKey = "FpcaUHu56A";
-    let MerchantCode = "M18173";
-    let RefNo = "A0001";
-    let Amount = "1.00";
-    let Currency = "MYR";
-    let concatValue =  `${MerchantKey + MerchantCode + RefNo + Amount.split('.').join("") + Currency}`;
-     console.log(concatValue);
-     let shavalue = sha256(concatValue);
-     console.log(shavalue);
-    return this.httpService.commonPost('https://payment.ipay88.com.my/epayment/entry.asp', { 
-      MerchantCode: MerchantCode, 
-      PaymentId: 1,
-      RefNo: RefNo,
-      Currency: Currency,
-      Amount: Amount,
-      ProdDesc: "test",
-      UserName: "test1",
-      UserEmail : "test@gmail.com",
-      UserContact: "9949633109",
-      Remark: "test",
-      Lang: "ISO-8859-1-English",
-      SignatureType: "SHA256",
-      Signature: shavalue,
-      ResponseURL: appConstants.apiBaseUrl + 'payment', 
-      BackendURL: appConstants.apiBaseUrl + 'payment'
 
-     });
-  }
-*/
 
-addPayment() {
-  this.inviteSubscriberService.addPayment().subscribe(payList => {
-    console.log(payList); 
-    
-   
-  });
-}
   restrictDoctor(){
     this.inviteSubscriberService.getDoctorData().subscribe(disList => {
       console.log(disList); 
@@ -184,9 +146,7 @@ addPayment() {
       }
     });
 
-    this.updateFcmTokn().subscribe((response) => {
-      // const subscriberProfileRes = resp;
-    });
+   
 
     /*this.inviteSubscriberService.getEmpanelementStatus().subscribe(response => {
     
@@ -293,7 +253,7 @@ doctorDisAgree() {
       } );
 
 } 
-
+/*
 getClaimStatus() {
   this.inviteSubscriberService.getClaimStatus().subscribe( status => {
      console.log(status['data'][0].status);  
@@ -307,6 +267,6 @@ getClaimStatus() {
           
       } );
 
-} 
+} */
 
 }

@@ -45,11 +45,11 @@ import { InviteSubscriberComponent } from './invite-subscriber/invite-subscriber
 // import { MessagingService } from "./messaging.service";
 import { AngularFireModule } from "angularfire2";
 // for AngularFireDatabase
-// import { AngularFireDatabaseModule } from "angularfire2/database";
-// import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireDatabase } from "angularfire2/database";
 // for AngularFireAuth
-// import { AngularFireAuthModule } from "angularfire2/auth";
-// import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { AngularFireAuth } from "angularfire2/auth";
 import { RequestPatientsComponent  } from './request-patients/request-patients.component';
 import { HelpSupportComponent } from './help-support/help-support.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -79,6 +79,17 @@ export const firebaseConfig = {
   appId: "1:7316415984:web:d309d3074c7376ada16935",
   measurementId: "G-3XWCZ7YNNK"
 };*/
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyBseozGbWiVjfBvFuNFFIH1Jd9iBqnQiBw",
+  authDomain: "healthcare-66586.firebaseapp.com",
+  databaseURL: "https://healthcare-66586.firebaseio.com",
+  projectId: "healthcare-66586",
+  storageBucket: "healthcare-66586.appspot.com",
+  messagingSenderId: "2503572817",
+  appId: "1:2503572817:web:783ac195881c47708f6770",
+  measurementId: "G-J30X7SC7GX"
+};
 
 @NgModule({
   declarations: [
@@ -133,9 +144,9 @@ export const firebaseConfig = {
     AppRoutingModule,
     ModalModule.forRoot(),
     InfiniteScrollModule,
-    // AngularFireModule.initializeApp(firebaseConfig),
-    // AngularFireDatabaseModule,
-    // AngularFireAuthModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     BootstrapModalModule,
     PdfViewerModule
   ],

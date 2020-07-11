@@ -36,6 +36,7 @@
     "ngx-infinite-scroll": "^8.0.1",
     "ngx-toastr": "^11.2.1",
     "open-iconic": "^1.1.1",
+    "sweetalert2": "^9.14.0",
     "rxjs": "~6.5.3",
     "rxjs-compat": "^6.5.3",
     "tslib": "^1.9.0",

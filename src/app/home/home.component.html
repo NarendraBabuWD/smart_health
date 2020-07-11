@@ -12,7 +12,7 @@
             <div class="card text-white bg-sub-healthReport o-hidden h-100">
                 <div class="card-body align-items-center d-flex justify-content-center">
                     <div class="mr-5">
-                        <a (click)="restrictSubscriber()" class="dasbaord-name text-white text-uppercase m-b-20"> My Health
+                        <a (click)="restrictSubscriber('1')" class="dasbaord-name text-white text-uppercase m-b-20"> My Health
                             Report </a>
                         <!-- <span class="dasbaord-name text-white text-uppercase m-b-20"> My Health Report </span> -->
                     </div>
@@ -56,7 +56,7 @@
                         <!-- <div class="card-body-icon">
                             <img src="./assets/icons/smart_care_home_icons/Doctor_Icons/medical_summary.png" class="float-right" />
                         </div> -->
-                        <a routerLink="/subscriber/medical-summary" href="javascript:void(0);"
+                        <a (click)="restrictSubscriber('2')"
                             class="btn dasbaord-name text-white text-uppercase m-b-20">
                             My Medical Summary
                         </a>
@@ -72,7 +72,7 @@
             <div class="card text-white bg-sub-healthData o-hidden h-100">
                 <div class="card-body align-items-center d-flex justify-content-center">
                     <div class="mr-5">
-                        <a routerLink="/health-data" class="dasbaord-name text-white text-uppercase m-b-20"> My Health
+                        <a (click)="restrictSubscriber('3')" class="dasbaord-name text-white text-uppercase m-b-20"> My Health
                             Data </a>
                     </div>
                     <div class="card-body-icon">
@@ -104,7 +104,7 @@
                     <div class="float-right">
                         <img  src="./assets/icons/smart_care_home_icons/Doctor_Icons/appointment.png" />
                     </div>
-                    <a routerLink="/subscriber-appointment" class="text-white text-uppercase m-b-20"
+                    <a (click)="restrictSubscriber('4')" class="text-white text-uppercase m-b-20"
                         >
                         My Appointment
                     </a>
@@ -132,7 +132,7 @@
                 </p> -->
 
                 <div class="text-white text-uppercase m-b-20" >
-                    <a routerLink="/subscription-account" class="text-white text-uppercase m-b-20"
+                    <a (click)="restrictSubscriber('5')" class="text-white text-uppercase m-b-20"
                         >
                         MY SUBSCRIPTION / ACCOUNT
                     </a>
@@ -174,7 +174,7 @@
                 <i class="fa fa-bar-chart float-right text-size1 -white icon-size"></i>
                 <!-- <p class="text-white text-uppercase m-b-20">HEALTH INFO BITS</p> -->
                 <div class="text-white text-uppercase m-b-20" *ngIf="!auth.isDoctor()">
-                        <a routerLink="/whatsnew" class="text-white text-uppercase m-b-20"
+                        <a (click)="restrictSubscriber('6')" class="text-white text-uppercase m-b-20"
                             >
                             What's New
                         </a>
@@ -205,7 +205,7 @@
                 <i class="fa fa-bar-chart float-right text-size1 -white icon-size"></i>
                 <!-- <p class="text-white text-uppercase m-b-20">HEALTH INFO BITS</p> -->
                 <div class="text-white text-uppercase m-b-20">
-                        <a routerLink="/healthInfoBits" class="text-white text-uppercase m-b-20"
+                        <a (click)="restrictSubscriber('7')" class="text-white text-uppercase m-b-20"
                             >
                             HEALTH INFO BITS
                         </a>

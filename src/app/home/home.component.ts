@@ -12,6 +12,8 @@ import { sha256 } from 'js-sha256';
 import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
+import swal from 'sweetalert2';
+
 
 
 @Component({
@@ -27,6 +29,10 @@ export class HomeComponent implements OnInit {
     showModal: boolean;
     pincheck = false;
     showSubModal: boolean;
+    profileFlag: Boolean = false;
+    subscriptionFlag: Boolean = false; 
+    drInfoFlag: Boolean = false;
+
   constructor(private httpService: HttpService, dialogService: DialogService,
               private data: DataService, private utilService: UtilService,
               private inviteSubscriberService: InviteSubscriberService, 
@@ -48,7 +54,7 @@ export class HomeComponent implements OnInit {
     this.msgService.receiveMessage();
     this.message = this.msgService.currentMessage;
     // this.updateFcmTokn();
-    this.inviteSubscriberService.updateAddFcmToken();
+    // this.inviteSubscriberService.updateAddFcmToken();
 
     
     this.medicalSummaryInputForm = this.formBuilder.group({
@@ -60,6 +66,8 @@ export class HomeComponent implements OnInit {
     if(JSON.parse(sessionStorage.getItem("userdata")).category_name == "Doctor")
   {
     this.restrictDoctor();
+    } else if(JSON.parse(sessionStorage.getItem("userdata")).category_name == "Subscriber"){
+      this.getMyAccount();
     }
     
     
@@ -90,11 +98,11 @@ export class HomeComponent implements OnInit {
     this.data.setSubscriberId(this.medicalSummaryInputForm.value.subscriber_id);
     this.router.navigate([appConstants.routingList.DOCTOR_MEDICAL_SUMMARY_COMPONENT]);
   }
-
+/*
   getUserProfile() {
     return this.httpService.commonPost(appConstants.apiBaseUrl + 'get_subscriber_details', { user_id: this.auth.getUserId() });
   }
-
+*/
   updateFcmTokn() {
     //  setTimeout(function(){
     //   console.log(sessionStorage.getItem("fcm_token"));
@@ -113,7 +121,7 @@ export class HomeComponent implements OnInit {
     console.log(sessionStorage.getItem("fcm_token"));
   }*/
 
-  restrictSubscriber(){
+ /* restrictSubscriber(){
  
 if(JSON.parse(sessionStorage.getItem("userdata")).doctor_id == ''){
   this.utilService.toastrInfo("Please Wait For Doctor's Invitation", "Subscriber");
@@ -128,13 +136,9 @@ if(JSON.parse(sessionStorage.getItem("userdata")).doctor_id == ''){
   });
 }
     // this.router.navigate(['/health-report']) 
-  }
+  }*/
 
-  getSubscriberDetails() {
-    return this.httpService.commonPost(appConstants.apiBaseUrl + 'get_subscriber_details', { 
-      user_id: JSON.parse(sessionStorage.getItem("userdata")).user_id 
-     });
-  }
+ 
 
 
   restrictDoctor(){
@@ -271,5 +275,77 @@ getClaimStatus() {
       } );
 
 } */
+
+
+getMyAccount(){
+  this.httpService.commonPost(appConstants.apiBaseUrl + 'get_subscriber_details',
+   { user_id: JSON.parse(sessionStorage.getItem("userdata")).user_id  }).subscribe(response => {
+    console.log(response);
+    if(response.data.length > 0){
+         this.profileFlag = true;
+    } else {
+      this.profileFlag = false;
+    }
+  });
+}
+
+
+goToSubscriptionAccountPage(){
+  swal.fire(
+    'Success',
+    'Your Subscription is Pending',
+    'success'
+  ).then(() => {
+    this.router.navigate(["subscription-account"]);
+  });
+}
+
+/*getSubscriberDetails() {
+  return this.httpService.commonPost(appConstants.apiBaseUrl + 'get_subscriber_details', { 
+    user_id: JSON.parse(sessionStorage.getItem("userdata")).user_id 
+   });
+}*/
+
+restrictSubscriber(tile){
+  console.log(tile);
+  console.log(this.profileFlag);
+  // console.log(this.subscriptionFlag);
+    if(this.profileFlag == true){
+           if(this.drInfoFlag == true){
+            // let message = 'Your Subscription is Pending';
+            let message = "Please wait for Doctor's Invitation";
+            this.toastrService.success(message);
+           } else if(this.subscriptionFlag == true){
+                  // this.goToSubscriptionAccountPage();
+           }else {
+            switch (tile) {
+              case '1':
+                 this.router.navigate(['health-report']);
+              break;
+              case '2':      
+                 this.router.navigate(['subscriber/medical-summary']);
+              break;
+              case '3':      
+                 this.router.navigate(['health-data']);
+              break;
+              case '4':      
+                 this.router.navigate(['subscriber-appointment']);
+              break;
+              case '5':      
+                 this.router.navigate(['subscription-account']);
+              break;
+              case '6':      
+                this.router.navigate(['whatsnew']);
+              break;
+              case '7':      
+              this.router.navigate(['healthInfoBits']);
+            break;
+              default:
+            }
+           }
+    } else {
+      this.router.navigate(['subscriber/profile']);
+    }
+}
 
 }

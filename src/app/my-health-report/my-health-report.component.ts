@@ -145,6 +145,7 @@ export class MyHealthReportComponent implements OnInit {
     this.isQuarterlyReport = false;
     this.isInitialReport = false;
     this.isProgressReport = true;
+    this.isYearlyReport = false;
     this.data.setSubscriberId(this.progressReportInputForm.value.user_id);
     setTimeout(()=>{
       this.healthReportService.user_id_emitter.emit(this.progressReportInputForm.value.user_id);

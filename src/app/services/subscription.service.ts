@@ -18,7 +18,8 @@ export class SubscriptionService {
     private apiUrlSubscriptionDuration = Apps.apiBaseUrl +'subscription_duration';
     private apiUrlSubAmt = Apps.apiBaseUrl +'get_subscription_amount';
     private apiUrlAddBillingInfo = Apps.apiBaseUrl +'create_billing_info';
-
+    private apiUrlUpdatePaymentData = Apps.apiBaseUrl +'update_billing_info';
+    private apiUrlMakeMrn = Apps.apiBaseUrl +'accept_doctor_request';
 
     post(arg0: string, arg1: string) {
     throw new Error("Method not implemented.");
@@ -91,12 +92,12 @@ getSubscriptionDuration(): Observable<any> {
          subscriber_name: JSON.parse(sessionStorage.getItem("userdata")).firstname+" "+JSON.parse(sessionStorage.getItem("userdata")).lastname,
          address: billingValues.address+" "+billingValues.address_2+" "+billingValues.postcode,
          subscriber_type: billingValues.subscription_type,
-         subscriber_period: "",
+         subscriber_period: billingValues.subscription_duration,
          subscriber_duration: billingValues.subscription_duration,
          total_amount: amount[0].amount,
-         invoice_no: "",
+         invoice_no: sessionStorage.getItem("invoiceNo"),
          account_no: amount[0].account_no,
-         dilling_date: moment().format("DD/MM/YYYY"),
+        //  dilling_date: moment().format("DD/MM/YYYY"),
          tax: amount[0].tax,
          doctor_id: JSON.parse(sessionStorage.getItem("userdata")).doctor_id,
          doctor_name: billingData.doctor_name
@@ -105,5 +106,26 @@ getSubscriptionDuration(): Observable<any> {
    
     return this.http.post(this.apiUrlAddBillingInfo, requestData);
   }
+
+  updatePaymentStatus(orderNo, razorpayPaymentId){
+    let requestData = {};
+    requestData = {
+       order_no: orderNo,
+       payment_id: razorpayPaymentId,
+       payment_status: "Success"
+    };
+    return this.http.post(this.apiUrlUpdatePaymentData, requestData);
+  }
+
+
+  mkeMrn(){
+    let requestData = {};
+    requestData = {
+       user_id: JSON.parse(sessionStorage.getItem("userdata")).user_id,
+       doctor_id: sessionStorage.getItem("doctor_id"),
+    };
+    return this.http.post(this.apiUrlMakeMrn, requestData);
+  }
+
 
 }

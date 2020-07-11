@@ -6,10 +6,10 @@ importScripts("https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js");
 
  // Initialize Firebase
  firebase.initializeApp({
-    'messagingSenderId': '2503572817'
+    'messagingSenderId': '876317979293'
   });
   
-  const messaging = firebase.messaging();
+  // const messaging = firebase.messaging();
 
 
 /*

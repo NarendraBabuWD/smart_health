@@ -68,27 +68,27 @@ import { SubscriptionAccountComponent } from './subscription-account/subscriptio
 import { SubscriptionOrderComponent } from './subscription-order/subscription-order.component';
 
 
-/*
-export const firebaseConfig = {
-  apiKey: "AIzaSyAeumHIydAC7jjGCBRVYwklZ-yp1eAQQng",
-  authDomain: "ourchkup.firebaseapp.com",
-  databaseURL: "https://ourchkup.firebaseio.com",
-  projectId: "ourchkup",
-  storageBucket: "ourchkup.appspot.com",
-  messagingSenderId: "7316415984",
-  appId: "1:7316415984:web:d309d3074c7376ada16935",
-  measurementId: "G-3XWCZ7YNNK"
-};*/
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyBseozGbWiVjfBvFuNFFIH1Jd9iBqnQiBw",
-  authDomain: "healthcare-66586.firebaseapp.com",
-  databaseURL: "https://healthcare-66586.firebaseio.com",
-  projectId: "healthcare-66586",
-  storageBucket: "healthcare-66586.appspot.com",
-  messagingSenderId: "2503572817",
-  appId: "1:2503572817:web:783ac195881c47708f6770",
-  measurementId: "G-J30X7SC7GX"
+// export const firebaseConfig = {
+//   apiKey: "AIzaSyBseozGbWiVjfBvFuNFFIH1Jd9iBqnQiBw",
+//   authDomain: "healthcare-66586.firebaseapp.com",
+//   databaseURL: "https://healthcare-66586.firebaseio.com",
+//   projectId: "healthcare-66586",
+//   storageBucket: "healthcare-66586.appspot.com",
+//   messagingSenderId: "2503572817",
+//   appId: "1:2503572817:web:783ac195881c47708f6770",
+//   measurementId: "G-J30X7SC7GX"
+// };
+
+var firebaseConfig = {
+  apiKey: "AIzaSyANdqFEeZKsIUgO-3iDfINBxWob4Yd1qmw",
+  authDomain: "healthproject-aab8a.firebaseapp.com",
+  databaseURL: "https://healthproject-aab8a.firebaseio.com",
+  projectId: "healthproject-aab8a",
+  storageBucket: "healthproject-aab8a.appspot.com",
+  messagingSenderId: "876317979293",
+  appId: "1:876317979293:web:a539f8155901f2205e1a74",
+  measurementId: "G-2QTYGEMM9X"
 };
 
 @NgModule({

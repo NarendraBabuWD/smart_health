@@ -46,8 +46,11 @@ export class HomeComponent implements OnInit {
 
     this.msgService.getPermission();
     this.msgService.receiveMessage();
-    // this.message = this.msgService.currentMessage;
+    this.message = this.msgService.currentMessage;
     // this.updateFcmTokn();
+    this.inviteSubscriberService.updateAddFcmToken();
+
+    
     this.medicalSummaryInputForm = this.formBuilder.group({
       subscriber_id: ['', [Validators.required]]
     });
@@ -77,7 +80,7 @@ export class HomeComponent implements OnInit {
       console.log(sessionStorage.getItem("fcm_token"));
     },1500);*/
     
-    this.msgService.updateUserFcmToken();
+    // this.msgService.updateUserFcmToken();
  
   }
   

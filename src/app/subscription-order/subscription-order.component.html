@@ -69,9 +69,9 @@
   <div class="row">
   <span class='col-md-10' >
   <div class="float-right">
-  <p>Total(RM):</p>
-  <p>Tax(RM):</p>
-  <p>Grand Total(RM):</p>
+  <p>Total(INR):</p>
+  <p>Tax(INR):</p>
+  <p>Grand Total(INR):</p>
   </div>
   </span>
   <span class='col-md-2'>
@@ -90,7 +90,7 @@
   <span class="col-sm-4">
   <div class="float-right">
   <button type="button" class="btn btn-outline-info" (click)="goToSubscription()">CHANGE ORDER</button>&nbsp;
-  <button type="button" class="btn btn-outline-success" (click)="childModal.show()">SUBMIT</button>
+  <button type="button" class="btn btn-outline-success" (click)="showAddModal()">SUBMIT</button>
   </div>
   </span>
   </div>
@@ -102,12 +102,17 @@
   </div>
 
 
-  <div class="modal fade" bsModal #childModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name2">
-    <div class="modal-dialog">
+  <!-- <div class="modal fade" bsModal #childModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name2"> -->
+    <!-- <div *ngIf="isNotifyModalShown" [config]="{ show: true }" bsModal #notifyShownModal="bs-modal" -->
+    <!-- class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name"> -->
+    <div class="backdrop" [ngStyle]="{'display':sigdisplay}"></div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':sigdisplay}">
+
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 id="dialog-nested-name2" class="modal-title pull-left">Subscription Agreement</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="childModal.hide()">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="hideAddModal()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -117,13 +122,27 @@
 
          <p>The information found in this subscription form as has filled in by the subscriber</p>
 
+         <!-- <input #chkEnable type="checkbox" /> I have read and understood terms and conditions -->
         </div>
 
         <div class="modal-footer">
-        <button type="submit"  class="btn btn-primary" (click)="addBillingInfo()">Submit</button>
-        <button type="button" class="btn btn-danger" (click)="childModal.hide()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="addBillingInfo()">Payment</button>
+        <button type="button" class="btn btn-danger" (click)="hideAddModal()">Cancel</button>
 
 </div></form>
       </div>
     </div>
   </div>
+
+
+  <div class="novopay-response-modal modal fade" role="dialog"     [ngClass]="{'show': showModal}"
+  id="response-modal"
+	[ngStyle]="{'display': 'none'}">
+    {{response}}
+	</div>
+
+<div class="novopay-response-modal modal fade" role="dialog"     [ngClass]="{'show': showModal}"
+  id="razorpay-response"
+	[ngStyle]="{'display': 'none'}">
+    {{razorpayResponse}}
+	</div>

@@ -11,7 +11,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class InviteSubscriberService {
-    // private apiUrlUpdateUserFcmToken = Apps.apiBaseUrl +'update_user_fcm_token';
+    private apiUrlUpdateUserFcmToken = Apps.apiBaseUrl +'update_user_fcm_token';
     private apiUrlInviteSub = Apps.apiBaseUrl +'push_fcm_notification';
     private apiUrlGetDoctorData = Apps.apiBaseUrl + 'get_doctor_details';
     private apiUrlGetEmpanelmentStatus = Apps.apiBaseUrl + 'empanelement_application_status';
@@ -64,17 +64,18 @@ export class InviteSubscriberService {
     return this.http.post(this.apiUrlGetDoctorData, requestData);
   }
 
-  /*updateAddFcmToken() {
+  updateAddFcmToken() {
     console.log("enter"); 
-    let request: any = [];
-    request = {};
+   let request = {};
     request = {
             user_id: JSON.parse(sessionStorage.getItem("userdata")).user_id,
             fcm_token: sessionStorage.getItem("fcm_token") 
     };    
     console.log(this.apiUrlUpdateUserFcmToken); 
+    console.log(request);
+    
     return this.http.post(this.apiUrlUpdateUserFcmToken, request); 
-  }*/
+  }
   
   getEmpanelementStatus(): Observable<any> {
     let requestData: any = [];

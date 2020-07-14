@@ -264,9 +264,34 @@
         </div> -->
         <div class="clearfix"></div>
         <div class="form-group row">
+          <label for="phone_no" class="col-sm-2 col-form-label">Phone_No </label>
+          <div class="col-sm-4 row">
+            <input id="tel" type="tel" class="form-control" formControlName="phone_no" placeholder="Phone_No" maxlength="13">
+            <div *ngIf="submitted && f.phone_no.errors" class="alert alert-danger form-group">
+              <div *ngIf="f.phone_no.errors.required">
+                Phone_No is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group row">
+          <label for="fax_no" class="col-sm-2 col-form-label">Fax_No </label>
+          <div class="col-sm-4 row">
+            <input type="text" class="form-control" formControlName="fax_no" placeholder="Fax_No" maxlength="18" />
+            <div *ngIf="submitted && f.fax_no.errors" class="alert alert-danger form-group">
+              <div *ngIf="f.fax_no.errors.required">
+                Fax No is required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="form-group row">
           <label for="height" class="col-sm-2 col-form-label">Height </label>
           <div class="col-sm-4 row">
-            <input type="number" class="form-control" formControlName="height" placeholder="Height" />
+            <input type="text" class="form-control" formControlName="height" placeholder="Height" />
             <div *ngIf="submitted && f.height.errors" class="alert alert-danger form-group">
               <div *ngIf="f.height.errors.required">
                 Height is required

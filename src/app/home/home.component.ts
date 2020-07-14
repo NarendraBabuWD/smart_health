@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import appConstants from '../config/app.constants'
 import { AuthService } from "../auth.service";
 import { DataService } from "../services/data.service";
+import { NotifyService } from '../services/notify.service';
+
 import { MessagingService } from "../messaging.service";
 import { InviteSubscriberService } from "../services/inviteSuscriber.service";
 import { UtilService } from '../services/util.service';
@@ -36,7 +38,7 @@ export class HomeComponent implements OnInit {
   constructor(private httpService: HttpService, dialogService: DialogService,
               private data: DataService, private utilService: UtilService,
               private inviteSubscriberService: InviteSubscriberService, 
-              private formBuilder: FormBuilder, 
+              private formBuilder: FormBuilder,  private notifyService: NotifyService,
               private msgService: MessagingService, 
               private router: Router, public auth: AuthService,
               private toastrService: ToastrService) { 
@@ -68,6 +70,7 @@ export class HomeComponent implements OnInit {
     this.restrictDoctor();
     } else if(JSON.parse(sessionStorage.getItem("userdata")).category_name == "Subscriber"){
       this.getMyAccount();
+      this.getNotifications();
     }
     
     
@@ -283,6 +286,16 @@ getMyAccount(){
     console.log(response);
     if(response.data.length > 0){
          this.profileFlag = true;
+         console.log(response.data[0].mrn);
+         console.log(response.data[0].doctor_id);
+         
+         if(response.data[0].doctor_id == ""){
+              this.subscriptionFlag = true;
+         } else {
+          this.subscriptionFlag = false;
+         }
+         console.log(this.subscriptionFlag);
+         
     } else {
       this.profileFlag = false;
     }
@@ -306,17 +319,39 @@ goToSubscriptionAccountPage(){
    });
 }*/
 
+
+getNotifications() {
+  this.notifyService.getNotifications().subscribe( response => {
+      console.log(response);
+      // console.log(response.data);  
+      if(response.data.length > 0){
+          this.drInfoFlag = false;
+      } else {
+        this.drInfoFlag = true;
+      }
+
+                 
+  },
+      error => {
+        //   this.alertNotSuccess();
+          
+      } );
+
+} 
+
 restrictSubscriber(tile){
   console.log(tile);
   console.log(this.profileFlag);
-  // console.log(this.subscriptionFlag);
+  console.log(this.subscriptionFlag);
+  console.log(this.drInfoFlag);
+  
     if(this.profileFlag == true){
            if(this.drInfoFlag == true){
             // let message = 'Your Subscription is Pending';
             let message = "Please wait for Doctor's Invitation";
             this.toastrService.success(message);
            } else if(this.subscriptionFlag == true){
-                  // this.goToSubscriptionAccountPage();
+                  this.goToSubscriptionAccountPage();
            }else {
             switch (tile) {
               case '1':

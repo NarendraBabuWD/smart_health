@@ -132,7 +132,7 @@ export class SubscriberProfileComponent implements OnInit {
         this.utilService.toastrSuccess("Details Updated Sucessfully", "Profile Data Updated Sucessfully");
       }, (err) => {
         console.log(err);
-        this.utilService.toastrError("Profile Data Updated Failed !.("+err.error.message.routine+")", "Progress Report");
+        this.utilService.toastrError("Profile Data Updated Failed !.("+err.error.message.routine+")", "Profile Data");
       });
     console.log(this.subscriberProfileForm.value);
     } 

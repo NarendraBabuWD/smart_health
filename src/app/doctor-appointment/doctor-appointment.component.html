@@ -59,9 +59,9 @@
               <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Select Time</label>
                 <div class="col-sm-6">
-                  <input placeholder="Select Time" formControlName="time"
-                  class="form-control" atp-time-picker />
-
+                  <!-- <input placeholder="Select Time" formControlName="time"
+                  class="form-control" atp-time-picker /> -->
+                  <timepicker [showMeridian]="isMeridian" formControlName="time"></timepicker>
                 </div>
               </div>
           

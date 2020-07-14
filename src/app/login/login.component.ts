@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import appConstants from '../config/app.constants';
 import { AuthService } from "../auth.service";
 import { InviteSubscriberService } from '../services/inviteSuscriber.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 // import { MessagingService } from "../messaging.service";   
 
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
 message;
   constructor(private httpService: HttpService, 
               private formBuilder: FormBuilder, 
-              private router: Router, 
+              private router: Router, private http:HttpClient,
               private inviteSubscriberService: InviteSubscriberService,
               // private msgService: MessagingService, 
               private authService: AuthService) { }
@@ -28,6 +30,7 @@ message;
   lognRes: any;
 
   ngOnInit() {
+    // this.apiTest();
     document.querySelector('body').classList.add('body-bg-color-theme');
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -86,6 +89,29 @@ message;
   
   ngOnDestroy(): void {
     document.querySelector('body').classList.remove('body-bg-color-theme');
+  }
+
+
+  apiTest(){
+    let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      headers.append('Accept', 'application/json');
+      headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
+      headers.append('Access-Control-Allow-Origin', '*');
+      headers.append('Access-Control-Allow-Headers', "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding");
+      // let options = new RequestOptions({ headers: headers });
+      let options = { headers: headers };
+      console.log(options)
+      // let body = "username="+this.loginForm.value.email+"&password="+this.loginForm.value.password;
+      let body = "http://127.0.0.1:5424/prediction?row_no=2&hh=30&f=365";
+      console.log(body);
+    this.http.post(body,
+    options).
+      subscribe((data) => {
+        console.log(data);
+  
+  
+      });
   }
 
 }

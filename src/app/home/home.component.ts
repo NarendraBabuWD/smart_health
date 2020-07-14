@@ -47,6 +47,7 @@ export class HomeComponent implements OnInit {
   medicalSummaryInputForm: FormGroup;
   subscriberProfileRes;
   ngOnInit() {
+   
     // this.restrictDoctor();
     this.showSubModal = false;
     // this.getClaimStatus();
@@ -69,6 +70,7 @@ export class HomeComponent implements OnInit {
   {
     this.restrictDoctor();
     } else if(JSON.parse(sessionStorage.getItem("userdata")).category_name == "Subscriber"){
+      this.inviteSubscriberService.updateAddFcmToken();
       this.getMyAccount();
       this.getNotifications();
     }
@@ -383,4 +385,16 @@ restrictSubscriber(tile){
     }
 }
 
+
+
+// Cast
+/*apiTest(){
+  this.http.post(appConstants.apiBaseUrl + 'get_subscriber_details', { user_id: this.user_id }).
+    subscribe((data) => {
+
+
+
+    });
+}
+*/
 }

@@ -42,7 +42,7 @@ import { DoctorProfileComponent } from './doctor/doctor-profile/doctor-profile.c
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoaderInterceptor } from './services/loader.interceptors';
 import { InviteSubscriberComponent } from './invite-subscriber/invite-subscriber.component';
-// import { MessagingService } from "./messaging.service";
+import { MessagingService } from "./messaging.service";
 import { AngularFireModule } from "angularfire2";
 // for AngularFireDatabase
 import { AngularFireDatabaseModule } from "angularfire2/database";
@@ -66,6 +66,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { YearlyReportComponent } from './yearly-report/yearly-report.component';
 import { SubscriptionAccountComponent } from './subscription-account/subscription-account.component';
 import { SubscriptionOrderComponent } from './subscription-order/subscription-order.component';
+import { TimepickerModule } from 'ngx-bootstrap';
 
 
 
@@ -80,7 +81,7 @@ import { SubscriptionOrderComponent } from './subscription-order/subscription-or
 //   measurementId: "G-J30X7SC7GX"
 // };
 
-var firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyANdqFEeZKsIUgO-3iDfINBxWob4Yd1qmw",
   authDomain: "healthproject-aab8a.firebaseapp.com",
   databaseURL: "https://healthproject-aab8a.firebaseio.com",
@@ -143,6 +144,7 @@ var firebaseConfig = {
     BsDatepickerModule.forRoot(),
     AppRoutingModule,
     ModalModule.forRoot(),
+    TimepickerModule.forRoot(),
     InfiniteScrollModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,

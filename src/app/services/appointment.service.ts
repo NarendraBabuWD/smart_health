@@ -76,12 +76,12 @@ console.log(todayDate);
     var yyyy = doctorApp.date.getFullYear();
     
     var dateFmt = yyyy+'-'+mm+'-'+dd;
-    
+    let timeFmt = moment(doctorApp.time).local().format("HH:mm:ss"); 
     let requestData = {};
     requestData = { 
          doctor_id: JSON.parse(sessionStorage.getItem("userdata")).user_id,
          date : dateFmt,
-         time: doctorApp.time
+         time: timeFmt
    
         };    
    

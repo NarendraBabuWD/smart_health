@@ -129,11 +129,11 @@ export class DoctorProfileComponent implements OnInit {
     // console.log(this.doctorProfileForm.value);
     let profileValues = this.doctorProfileForm.value;
     profileValues["user_id"] = this.user_id;
-    // profileValues.dob = moment(profileValues.dob, "YYYY-MM-DD");
+    profileValues.dob = moment(profileValues.dob, "YYYY-MM-DD");
     // profileValues.dob = moment(profileValues.dob).utc().format('YYYY-MM-DD');
     // console.log(profileValues.dob);
     
-    profileValues.dob = moment(profileValues.dob).local().format("YYYY-MM-DD");                            
+    // profileValues.dob = moment(profileValues.dob).local().format("YYYY-MM-DD");                            
 // console.log(profileValues.dob);
 
     this.httpService.commonPost(appConstants.apiBaseUrl + 'update_doctor_details', profileValues).subscribe(data => {

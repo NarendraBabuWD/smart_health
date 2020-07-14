@@ -59,7 +59,7 @@ export class SubscriberProfileComponent implements OnInit {
       fax_no: ["", [Validators.required]],
       user_id: ["", [Validators.required]],
       height: ["", [Validators.required]],
-      mrn: ["", [Validators.required]],
+      // mrn: ["", [Validators.required]],
       race: ["", [Validators.required]],
       treatement_for_high_blood_pressure: ["", [Validators.required]],
       diabetes: ["", [Validators.required]],
